@@ -16,8 +16,17 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create product" do
+    file = fixture_file_upload("lorem.jpg", "image/jpeg")
+
     assert_difference("Product.count") do
-      post products_url, params: { product: {  title: @product. title, description: @product.description, price: @product.price } }
+      post products_url, params: {
+        product: {
+          title: @product.title,
+          description: @product.description,
+          price: @product.price,
+          image: file
+        }
+      }
     end
 
     assert_redirected_to product_url(Product.last)
@@ -34,7 +43,16 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: {  title: @product. title, description: @product.description, price: @product.price } }
+    file = fixture_file_upload("lorem.jpg", "image/jpeg")
+
+    patch product_url(@product), params: {
+      product: {
+        title: @product.title,
+        description: @product.description,
+        price: @product.price,
+        image: file
+      }
+    }
     assert_redirected_to product_url(@product)
   end
 
