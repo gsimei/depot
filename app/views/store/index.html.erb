@@ -1,0 +1,13 @@
+<div>
+  <h1 class="font-bold text-4xl">Store</h1>
+  <% @products.each do |product| %>
+    <div>
+      <% if product.image.attached? %>
+        <%= image_tag product.image, class: "w-1/4 h-auto" %>
+      <% end %>
+      <h2><%= product.title %></h2>
+      <p><%= sanitize(product.description) %></p>
+      <p>$<%= product.price %></p>
+    </div>
+  <% end %>
+</div>
